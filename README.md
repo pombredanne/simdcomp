@@ -1,6 +1,9 @@
 The SIMDComp library
 ====================
 [![Build Status](https://travis-ci.org/lemire/simdcomp.png)](https://travis-ci.org/lemire/simdcomp)
+[![Build Status](https://img.shields.io/appveyor/ci/lemire/simdcomp.svg)](https://ci.appveyor.com/project/lemire/simdcomp)
+[![Code Quality: Cpp](https://img.shields.io/lgtm/grade/cpp/g/lemire/simdcomp.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/lemire/simdcomp/context:cpp)
+
 
 A simple C library for compressing lists of integers using binary packing and SIMD instructions.
 The assumption is either that you have a list of 32-bit integers where most of them are small, or a list of 32-bit integers where differences between successive integers are small. No software is able to reliably compress an array of 32-bit random numbers.
@@ -12,6 +15,8 @@ This is significantly faster than generic codecs like gzip, LZO, Snappy or LZ4.
 On a Skylake Intel processor, it can decode integers at a rate 0.3 cycles per integer,
 which can easily translate into more than 8 decoded billions integers per second.
 
+This library is part of the [Awesome C](https://github.com/kozross/awesome-c) list of C ressources.
+
 Contributors: Daniel Lemire, Nathan Kurz, Christoph Rupp, Anatol Belski, Nick White and others
 
 What is it for?
@@ -19,6 +24,12 @@ What is it for?
 
 This is a low-level library for fast integer compression. By design it does not define a compressed
 format. It is up to the (sophisticated) user to create a compressed format.
+
+It is used by:
+- [upscaledb](https://github.com/cruppstahl/upscaledb)
+- [EventQL](https://github.com/eventql/eventql)
+
+
 
 Requirements
 -------------
@@ -118,17 +129,35 @@ If you are a go user, there is a "go" folder where you will find a simple demo.
 Other libraries
 ----------------
 
-* FastPFOR is a C++ research library well suited to compress unsorted arrays: https://github.com/lemire/FastPFor
-* SIMDCompressionAndIntersection is a C++ research library well suited for sorted arrays (differential coding)
-and computing intersections: https://github.com/lemire/SIMDCompressionAndIntersection
+* SIMDCompressionAndIntersection: A C++ library to compress and intersect sorted lists of integers using SIMD instructions https://github.com/lemire/SIMDCompressionAndIntersection
+* The FastPFOR C++ library : Fast integer compression https://github.com/lemire/FastPFor
+* High-performance dictionary coding https://github.com/lemire/dictionary
+* LittleIntPacker: C library to pack and unpack short arrays of integers as fast as possible https://github.com/lemire/LittleIntPacker
+* StreamVByte: Fast integer compression in C using the StreamVByte codec https://github.com/lemire/streamvbyte
+* MaskedVByte: Fast decoder for VByte-compressed integers https://github.com/lemire/MaskedVByte
+* CSharpFastPFOR: A C#  integer compression library  https://github.com/Genbox/CSharpFastPFOR
+* JavaFastPFOR: A java integer compression library https://github.com/lemire/JavaFastPFOR
+* Encoding: Integer Compression Libraries for Go https://github.com/zhenjl/encoding
+* FrameOfReference is a C++ library dedicated to frame-of-reference (FOR) compression: https://github.com/lemire/FrameOfReference
+* libvbyte: A fast implementation for varbyte 32bit/64bit integer compression https://github.com/cruppstahl/libvbyte
 * TurboPFor is a C library that offers lots of interesting optimizations. Well worth checking! (GPL license) https://github.com/powturbo/TurboPFor
 * Oroch is a C++ library that offers a usable API (MIT license) https://github.com/ademakov/Oroch
 
 
+Other programming languages
+-------------
+
+- [There is a wrapper for Julia](https://github.com/mcovalt/TinyInt.jl).
+- [There is a Rust port](https://github.com/tantivy-search/bitpacking/).
+
 References
 ------------
-
-* Daniel Lemire, Leonid Boytsov, Nathan Kurz, SIMD Compression and the Intersection of Sorted Integers, Software Practice & Experience (to appear) http://arxiv.org/abs/1401.6399
+* Daniel Lemire, Nathan Kurz, Christoph Rupp, Stream VByte: Faster Byte-Oriented Integer Compression, Information Processing Letters (to appear) https://arxiv.org/abs/1709.08990
+* Jianguo Wang, Chunbin Lin, Yannis Papakonstantinou, Steven Swanson, An Experimental Study of Bitmap Compression vs. Inverted List Compression, SIGMOD 2017 http://db.ucsd.edu/wp-content/uploads/2017/03/sidm338-wangA.pdf
+* P. Damme, D. Habich, J. Hildebrandt, W. Lehner, Lightweight Data Compression Algorithms: An Experimental Survey (Experiments and Analyses), EDBT 2017 http://openproceedings.org/2017/conf/edbt/paper-146.pdf
+* P. Damme, D. Habich, J. Hildebrandt, W. Lehner, Insights into the Comparative Evaluation of Lightweight Data Compression Algorithms, EDBT 2017 http://openproceedings.org/2017/conf/edbt/paper-414.pdf
+* Daniel Lemire, Leonid Boytsov, Nathan Kurz, SIMD Compression and the Intersection of Sorted Integers, Software Practice & Experience 46 (6) 2016. http://arxiv.org/abs/1401.6399
 * Daniel Lemire and Leonid Boytsov, Decoding billions of integers per second through vectorization, Software Practice & Experience 45 (1), 2015.  http://arxiv.org/abs/1209.2137 http://onlinelibrary.wiley.com/doi/10.1002/spe.2203/abstract
 * Jeff Plaisance, Nathan Kurz, Daniel Lemire, Vectorized VByte Decoding, International Symposium on Web Algorithms 2015, 2015. http://arxiv.org/abs/1503.07387
 * Wayne Xin Zhao, Xudong Zhang, Daniel Lemire, Dongdong Shan, Jian-Yun Nie, Hongfei Yan, Ji-Rong Wen, A General SIMD-based Approach to Accelerating Compression Algorithms, ACM Transactions on Information Systems 33 (3), 2015. http://arxiv.org/abs/1502.01916
+* T. D. Wu, Bitpacking techniques for indexing genomes: I. Hash tables, Algorithms for Molecular Biology 11 (5), 2016. http://almob.biomedcentral.com/articles/10.1186/s13015-016-0069-5
