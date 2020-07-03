@@ -28,7 +28,7 @@ format. It is up to the (sophisticated) user to create a compressed format.
 It is used by:
 - [upscaledb](https://github.com/cruppstahl/upscaledb)
 - [EventQL](https://github.com/eventql/eventql)
-
+- [Tantivy search engine](https://github.com/tantivy-search/) via a Rust port: https://github.com/tantivy-search/bitpacking
 
 
 Requirements
